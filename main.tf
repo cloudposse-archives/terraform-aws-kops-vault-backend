@@ -10,7 +10,7 @@ module "label" {
 
 module "kops_metadata" {
   source     = "git::https://github.com/cloudposse/terraform-aws-kops-metadata.git?ref=tags/0.1.1"
-  dns_zone   = "${var.name}"
+  dns_zone   = "${var.cluster_name}"
   nodes_name = "${var.nodes_name}"
 }
 

@@ -12,11 +12,12 @@ module "kops_vault_backend" {
   source       = "git::https://github.com/cloudposse/terraform-aws-kops-vault-backend.git?ref=master"
   namespace    = "cp"
   stage        = "prod"
-  name         = "domain.com"
+  name         = "vault-backend"
+  cluster_name = "us-east-1.cloudposse.com"
   nodes_name   = "nodes"
 
   tags = {
-    Cluster = "k8s.domain.com"
+    Cluster = "us-east-1.cloudposse.com"
   }
 }
 ```
@@ -24,15 +25,16 @@ module "kops_vault_backend" {
 
 ## Variables
 
-|  Name              |  Default     |  Description                                                                     | Required |
-|:-------------------|:-------------|:---------------------------------------------------------------------------------|:--------:|
-| `namespace`        | ``           | Namespace (_e.g._ `cp` or `cloudposse`)                                          | Yes      |
-| `stage`            | ``           | Stage (_e.g._ `prod`, `dev`, `staging`)                                          | Yes      |
-| `name`             | ``           | Name of the Kops DNS zone (_e.g._ `domain.com`)                                  | Yes      |
-| `attributes`       | `[]`         | Additional attributes (_e.g._ `1`)                                               | No       |
-| `tags`             | `{}`         | Additional tags  (_e.g._ `map("BusinessUnit","XYZ")`                             | No       |
-| `delimiter`        | `-`          | Delimiter to be used between `namespace`, `stage`, `name`, and `attributes`      | No       |
-| `nodes_name`       | `nodes`      | Kops nodes subdomain name in the Kops DNS zone                                   | No       |
+|  Name              |  Default        |  Description                                                                     | Required |
+|:-------------------|:----------------|:---------------------------------------------------------------------------------|:--------:|
+| `namespace`        | ``              | Namespace (_e.g._ `cp` or `cloudposse`)                                          | Yes      |
+| `stage`            | ``              | Stage (_e.g._ `prod`, `dev`, `staging`)                                          | Yes      |
+| `cluster_name`     | ``              | Cluster name (_e.g._ `us-east-1.cloudposse.com`)                                 | Yes      |
+| `name`             | `vault-backend` | Name (_e.g._ `vault-backend`)                                                    | No       |
+| `attributes`       | `[]`            | Additional attributes (_e.g._ `1`)                                               | No       |
+| `tags`             | `{}`            | Additional tags  (_e.g._ `map("Cluster","us-east-1.cloudposse.com")`             | No       |
+| `delimiter`        | `-`             | Delimiter to be used between `namespace`, `stage`, `name` and `attributes`       | No       |
+| `nodes_name`       | `nodes`         | Kops nodes subdomain name in the cluster DNS zone                                | No       |
 
 
 ## Outputs
