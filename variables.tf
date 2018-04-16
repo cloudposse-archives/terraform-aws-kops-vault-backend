@@ -10,13 +10,14 @@ variable "stage" {
 
 variable "name" {
   type        = "string"
-  description = "Name of the Kops DNS zone (e.g. `domain.com`)"
+  default     = "vault-backend"
+  description = "Name (e.g. `vault-backend`)"
 }
 
 variable "delimiter" {
   type        = "string"
   default     = "-"
-  description = "Delimiter to be used between `namespace`, `stage`, `name`, and `attributes`"
+  description = "Delimiter to be used between `namespace`, `stage`, `name` and `attributes`"
 }
 
 variable "attributes" {
@@ -31,8 +32,13 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
+variable "cluster_name" {
+  type        = "string"
+  description = "Kops cluster name (e.g. `us-east-1.cloudposse.com` or `cluster-1.cloudposse.com`)"
+}
+
 variable "nodes_name" {
   type        = "string"
   default     = "nodes"
-  description = "Kops nodes subdomain name in the Kops DNS zone"
+  description = "Kops nodes subdomain name in the cluster DNS zone"
 }
